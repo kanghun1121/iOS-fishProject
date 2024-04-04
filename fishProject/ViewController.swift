@@ -6,12 +6,18 @@
 //
 
 import UIKit
+import NMapsMap
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        let marker = NMFMarker()
+        marker.position = NMGLatLng(lat: 37.5670135, lng: 126.9783740)
+        let mapView = NMFMapView(frame : view.frame)
+        marker.mapView = mapView
+        view.addSubview(mapView)
     }
 
 

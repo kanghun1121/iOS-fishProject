@@ -10,8 +10,13 @@ import NMapsMap
 
 class ViewController: UIViewController {
 
+    let coastDataManager = CoastDataManager()
+    
+    var coastList : [Coast]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        getData()
         
         let marker = NMFMarker()
         marker.position = NMGLatLng(lat: 37.5670135, lng: 126.9783740)
@@ -20,10 +25,14 @@ class ViewController: UIViewController {
         view.addSubview(mapView)
     }
 
+    
+    func getData() {
+        coastDataManager.getCoastData { coastDataList in
+            self.coastList = coastDataList
+        }
+    }
 
 }
 
-// 20240414154519
-// http://www.khoa.go.kr/api/oceangrid/tideObsRecent/search.do?ServiceKey=1IsctRKNB0OfgDcw92JRRg==&ObsCode=DT_0001&ResultType=json
 
 

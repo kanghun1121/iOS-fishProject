@@ -42,19 +42,19 @@ struct Meta: Codable {
 }
 
 struct Coast {
-    let recordTime : String?
-    let tideLevel : String? // 조위
-    let waterTemp : String? // 수온
-    let salinity : String? // 염분
-    let airTemp : String? // 기온
-    let airPress : String? // 기압
-    let windDir : String? // 풍향
-    let windSpeed : String? // 풍속
-    let windGust : String? // 돌풍
+    let recordTime : String
+    let tideLevel : String // 조위
+    let waterTemp : String // 수온
+    let salinity : String // 염분
+    let airTemp : String // 기온
+    let airPress : String // 기압
+    let windDir : String // 풍향
+    let windSpeed : String // 풍속
+    let windGust : String // 돌풍
     
-    let obsLat : String? // 경도
-    let obsLon : String? // 위도
-    let obsPostName : String? // 해안가 이름
+    let obsLat : String // 경도
+    let obsLon : String // 위도
+    let obsPostName : String // 해안가 이름
     
     init(recordTime: String, tideLevel: String, waterTemp: String, salinity: String, airTemp: String, airPress: String, windDir: String, windSpeed: String, windGust: String, obsLat: String, obsLon: String, obsPostName: String) {
         self.recordTime = recordTime
@@ -75,34 +75,33 @@ struct Coast {
 
 struct CoastDataManager {
     
+    static var coastList = [Coast]()
+    
     let coastURL = "http://www.khoa.go.kr/api/oceangrid/tideObsRecent/search.do?"
     
     let myKey = "1IsctRKNB0OfgDcw92JRRg=="
     
     let coastCodeList = ["DT_0063", "DT_0032", "DT_0031", "DT_0029", "DT_0026", "DT_0049", "DT_0042", "DT_0019", "DT_0017", "DT_0065", "DT_0057", "DT_0062", "DT_0023", "DT_0007", "DT_0006", "DT_0025", "DT_0041", "DT_0005", "DT_0056", "DT_0061", "DT_0094", "DT_0010", "DT_0051", "DT_0022", "DT_0093", "DT_0012", "IE_0061", "DT_0008", "DT_0067", "DT_0037", "DT_0016", "DT_0092", "DT_0003", "DT_0044", "DT_0043", "IE_0062", "DT_0027", "DT_0039", "DT_0013", "DT_0020", "DT_0068", "IE_0060", "DT_0001", "DT_0052", "DT_0024", "DT_0004", "DT_0028", "DT_0021", "DT_0050", "DT_0014", "DT_0002", "DT_0091", "DT_0902", "DT_0066", "DT_0011", "DT_0035"]
     
-    
-    func getCoastData(completion : @escaping (([Coast]) -> Void)) {
-        
-        var coastList = [Coast]()
+    func getCoastData() -> [Coast] {
         
         for coastCode in coastCodeList {
             fetchCoast(obsNumber: coastCode) { coast in
                 guard let coast = coast else {
                     return
                 }
-                coastList.append(coast)
+                CoastDataManager.coastList.append(coast)
             }
         }
         
-        dump(coastList)
-        completion(coastList)
+        sleep(7)
+        
+        return CoastDataManager.coastList
     }
     
     
-    func fetchCoast(obsNumber : String, completion : @escaping (Coast?) -> Void) {
+    func fetchCoast(obsNumber : String,  completion : @escaping (Coast?) -> Void) {
         let urlString = "\(coastURL)ServiceKey=\(myKey)&ObsCode=\(obsNumber)&ResultType=json"
-        //print(urlString)
         performRequest(with: urlString) { coast in
             completion(coast)
         }
@@ -164,6 +163,5 @@ struct CoastDataManager {
             return nil
         }
     }
-
 }
 

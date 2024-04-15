@@ -83,12 +83,7 @@ struct CoastDataManager {
     
     let coastCodeList = ["DT_0063", "DT_0032", "DT_0031", "DT_0029", "DT_0026", "DT_0049", "DT_0042", "DT_0019", "DT_0017", "DT_0065", "DT_0057", "DT_0062", "DT_0023", "DT_0007", "DT_0006", "DT_0025", "DT_0041", "DT_0005", "DT_0056", "DT_0061", "DT_0094", "DT_0010", "DT_0051", "DT_0022", "DT_0093", "DT_0012", "IE_0061", "DT_0008", "DT_0067", "DT_0037", "DT_0016", "DT_0092", "DT_0003", "DT_0044", "DT_0043", "IE_0062", "DT_0027", "DT_0039", "DT_0013", "DT_0020", "DT_0068", "IE_0060", "DT_0001", "DT_0052", "DT_0024", "DT_0004", "DT_0028", "DT_0021", "DT_0050", "DT_0014", "DT_0002", "DT_0091", "DT_0902", "DT_0066", "DT_0011", "DT_0035"]
     
-    
     func getCoastData() -> [Coast] {
-        return CoastDataManager.coastList
-    }
-    
-    func setCoastData() {
         
         for coastCode in coastCodeList {
             fetchCoast(obsNumber: coastCode) { coast in
@@ -98,6 +93,10 @@ struct CoastDataManager {
                 CoastDataManager.coastList.append(coast)
             }
         }
+        
+        sleep(7)
+        
+        return CoastDataManager.coastList
     }
     
     
@@ -164,16 +163,12 @@ struct CoastDataManager {
             return nil
         }
     }
-
 }
 
 let coastManager = CoastDataManager()
 
 var coastList = [Coast]()
 
-coastManager.setCoastData()
-
-DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5) {
-    coastList = coastManager.getCoastData()
-    dump(coastList)
-}
+coastList = coastManager.getCoastData()
+sleep(8)
+dump(coastList)

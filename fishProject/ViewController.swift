@@ -12,66 +12,40 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var zoomControlView : NMFZoomControlView!
     
-    class ItemKey: NSObject, NMCClusteringKey { // 클러스터링에 필요한 필수 클래스
-        let identifier: Int
-        let position: NMGLatLng
-
-        init(identifier: Int, position: NMGLatLng) {
-            self.identifier = identifier
-            self.position = position
-        }
-
-        static func markerKey(withIdentifier identifier: Int, position: NMGLatLng) -> ItemKey {
-            return ItemKey(identifier: identifier, position: position)
-        }
-
-        override func isEqual(_ o: Any?) -> Bool {
-            guard let o = o as? ItemKey else {
-                return false
-            }
-            if self === o {
-                return true
-            }
-
-            return o.identifier == self.identifier
-        }
-
-        override var hash: Int {
-            return self.identifier
-        }
-
-        func copy(with zone: NSZone? = nil) -> Any {
-            return ItemKey(identifier: self.identifier, position: self.position)
-        }
-    }
-    
     let coastDataManager = CoastDataManager()
     var coastList : [Coast] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        var mapView = NMFMapView(frame: view.frame)
+        
+        mapInfo(mapView)
+        getMarkerData(mapView)
+    }
+    
+    func mapInfo(_ mapView : NMFMapView) {
+        
+        mapView.zoomLevel = 5
+        view.addSubview(mapView)
+    }
+    
+    func getMarkerData(_ mapView : NMFMapView) {
         
         coastList = coastDataManager.getCoastData()
         
-        sleep(10)
-        
-        let mapView = NMFMapView(frame: view.frame)
-        mapView.zoomLevel = 1
-        view.addSubview(mapView)
-        let builder = NMCBuilder<ItemKey>()
-        let clusterer = builder.build()
-        
-        var cnt = 1
-        
-        for coastData in coastList {
-            guard let obsLat = Double(coastData.obsLat) else { return }
-            guard let obsLon = Double(coastData.obsLon) else { return }
-            clusterer.add(ItemKey(identifier: cnt, position: NMGLatLng(lat: obsLat, lng: obsLon)), nil)
-            print(obsLat, obsLon)
-            cnt += 1
+        for coast in coastList {
+            guard let lat = Double(coast.obsLat) else { return }
+            guard let lon = Double(coast.obsLon) else { return }
+
+            let marker = NMFMarker()
+            marker.position = NMGLatLng(lat: lat, lng: lon)
+            marker.mapView = mapView
+
+            marker.touchHandler = { (overlay : NMFOverlay) -> Bool in // 마커 터치 핸들러 (이를 통해서 다양한 구현이 가능함.)
+                print(overlay.overlayID)
+                return true
+            }
         }
-        
-        clusterer.mapView = mapView
     }
 }
 

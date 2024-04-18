@@ -7,47 +7,124 @@
 
 import UIKit
 import NMapsMap
+import CoreLocation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController , CLLocationManagerDelegate {
     
     @IBOutlet weak var zoomControlView : NMFZoomControlView!
     
     let coastDataManager = CoastDataManager()
+    let weatherDataManager = WeatherDataManager()
     var coastList : [Coast] = []
+    var weatherList : [Weather] = []
+    var locationManger = CLLocationManager()
+    
+    var myLat : Int?
+    var myLon : Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var mapView = NMFMapView(frame: view.frame)
-        
-        mapInfo(mapView)
-        getMarkerData(mapView)
-    }
-    
-    func mapInfo(_ mapView : NMFMapView) {
-        
-        mapView.zoomLevel = 5
+        let mapView = NMFMapView(frame: view.frame)
         view.addSubview(mapView)
+        
+        setMarkerData(mapView)
+        setCoreLocation()
     }
     
-    func getMarkerData(_ mapView : NMFMapView) {
+    func setCoreLocation() {
+        locationManger.delegate = self
+        // 거리 정확도 설정
+        locationManger.desiredAccuracy = kCLLocationAccuracyBest
+        // 사용자에게 허용 받기 alert 띄우기
+        locationManger.requestWhenInUseAuthorization()
+  
+        // 아이폰 설정에서의 위치 서비스가 켜진 상태라면
+        
+        DispatchQueue.global().async { [self] in // 현재 위치 lat, lon 받기
+            if CLLocationManager.locationServicesEnabled() {
+                locationManger.startUpdatingLocation() //위치 정보 받아오기 시작
+                guard let lat = locationManger.location?.coordinate.latitude else { return }
+                guard let lon = locationManger.location?.coordinate.longitude else { return }
+                (myLat, myLon) = (Int(lat), Int(lon))
+                
+                guard let myLat = myLat else { return }
+                guard let myLon = myLon else { return }
+                
+                let (current_Date, current_Time) = weatherDataManager.getCurrentTime()
+                // 현재 시간을 Date 객체로 받아서 파싱을 통해서 어떻게 파라미터를 넘겨야 할지 고민해봐야 할 거 같음.
+                weatherDataManager.fetchMovie(currentDate: current_Date, currentTime: current_Time, cur_x: String(myLat), cur_y: String(abs(myLon))) { weathers in
+                    guard let weathers = weathers else {
+                        print("데이터 전달 실패")
+                        return
+                    }
+                    
+                    self.weatherList = weathers
+                    
+                    var cnt = 0
+                    for weather in self.weatherList {
+                        cnt += 1
+                        print(weather.predictDate, weather.category, weather.categoryValue)
+                        if (cnt % 4 == 0) { print("--------------------------------------------") }
+                    }
+                }
+            }
+            else {
+                print("위치 서비스 Off 상태")
+            }
+        }
+    }
+    
+    // 위도 경도 받아오기 에러
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
+    }
+    
+    func setMarkerData(_ mapView : NMFMapView) {
         
         coastList = coastDataManager.getCoastData()
         
         for coast in coastList {
             guard let lat = Double(coast.obsLat) else { return }
             guard let lon = Double(coast.obsLon) else { return }
-
-            let marker = NMFMarker()
-            marker.position = NMGLatLng(lat: lat, lng: lon)
-            marker.mapView = mapView
+            
+            let marker : NMFMarker = {
+                let m = NMFMarker()
+                m.position = NMGLatLng(lat: lat, lng: lon)
+                m.width = 30
+                m.height = 40
+                m.captionText = coast.obsPostName
+                m.mapView = mapView
+                m.userInfo = ["tag" : coast.obsPostName]
+                return m
+            }()
 
             marker.touchHandler = { (overlay : NMFOverlay) -> Bool in // 마커 터치 핸들러 (이를 통해서 다양한 구현이 가능함.)
-                print(overlay.overlayID)
+                guard let tappedMarkerName = overlay.userInfo["tag"] else { return false }
+                
+                guard let tappedMarkerName = tappedMarkerName as? String else { return false }
+                
+                for coast in self.coastList {
+                    if (coast.obsPostName == tappedMarkerName) {
+                        // 9개의 정보 뿌림.
+                        print("------------- \(coast.obsPostName) ------------")
+                        print("tideLevel : ", coast.tideLevel)
+                        print("Salinity : ", coast.salinity)
+                        print("tideLevel : ", coast.tideLevel)
+                        print("airTemp : ", coast.airTemp)
+                        print("airPress : ", coast.airPress)
+                        print("waterTemp : " , coast.waterTemp)
+                        print("windDir : " , coast.windDir)
+                        print("windGust : ", coast.windGust)
+                        print("windSpeed : " , coast.windSpeed)
+                        print("--------------------------------------")
+                        break
+                    }
+                }
+                
                 return true
             }
         }
     }
 }
-
 
 

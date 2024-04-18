@@ -95,7 +95,7 @@ struct CoastDataManager {
             }
         }
         
-        sleep(7)
+        sleep(7) // 동기 함수 (나중에 사용안하고 데이터 어떻게 비동기로 옮겨야할지 고민해봐야 함)
         
         return CoastDataManager.coastList
     }

@@ -192,28 +192,5 @@ struct WeatherDataManager {
     }
 }
 
-//var manager = WeatherDataManager()
-//var weatherData = [Weather]()
-//
-//var (current_Date, current_Time) = manager.getCurrentTime()
-//
-//// 현재 시간을 Date 객체로 받아서 파싱을 통해서 어떻게 파라미터를 넘겨야 할지 고민해봐야 할 거 같음.
-//
-//manager.fetchMovie(currentDate: current_Date, currentTime: current_Time, cur_x: "55", cur_y: "127") { weathers in
-//    guard let weathers = weathers else {
-//        print("데이터 전달 실패")
-//        return
-//    }
-//
-//    weatherData = weathers
-//
-//    var cnt = 0
-//    for weather in weatherData {
-//        cnt += 1
-//        print(weather.predictDate, weather.category, weather.categoryValue)
-//        if (cnt % 4 == 0) { print("--------------------------------------------") }
-//    }
-//}
-
 
 

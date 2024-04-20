@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26088CEE2BD3B43D003FFB41 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26088CED2BD3B43D003FFB41 /* DetailViewController.swift */; };
 		264F97A02BCBB3BA00B74486 /* CoastDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264F979F2BCBB3BA00B74486 /* CoastDataManager.swift */; };
 		2677DCC12BD01A0F007ECC0E /* WeatherDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677DCC02BD01A0F007ECC0E /* WeatherDataManager.swift */; };
 		26BB03B62BBECBD30051B6C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BB03B52BBECBD30051B6C4 /* AppDelegate.swift */; };
@@ -14,20 +15,20 @@
 		26BB03BA2BBECBD30051B6C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BB03B92BBECBD30051B6C4 /* ViewController.swift */; };
 		26BB03BD2BBECBD30051B6C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26BB03BB2BBECBD30051B6C4 /* Main.storyboard */; };
 		26BB03BF2BBECBD50051B6C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26BB03BE2BBECBD50051B6C4 /* Assets.xcassets */; };
-		26BB03C22BBECBD50051B6C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26BB03C02BBECBD50051B6C4 /* LaunchScreen.storyboard */; };
 		CFFB4BABCABD04AD849A2713 /* libPods-fishProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B26284018E98B4BBA8475DAF /* libPods-fishProject.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		26088CED2BD3B43D003FFB41 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		264F979F2BCBB3BA00B74486 /* CoastDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoastDataManager.swift; sourceTree = "<group>"; };
 		2677DCC02BD01A0F007ECC0E /* WeatherDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataManager.swift; sourceTree = "<group>"; };
+		2677DCC82BD3B27C007ECC0E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = fishProject/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		26BB03B22BBECBD30051B6C4 /* fishProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fishProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26BB03B52BBECBD30051B6C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26BB03B72BBECBD30051B6C4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		26BB03B92BBECBD30051B6C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		26BB03BC2BBECBD30051B6C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		26BB03BE2BBECBD50051B6C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		26BB03C12BBECBD50051B6C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		26BB03C32BBECBD50051B6C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		36C81C6118DD81E5FF1C91D7 /* Pods-fishProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fishProject.release.xcconfig"; path = "Target Support Files/Pods-fishProject/Pods-fishProject.release.xcconfig"; sourceTree = "<group>"; };
 		A3276270E080336153C78263 /* Pods-fishProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fishProject.debug.xcconfig"; path = "Target Support Files/Pods-fishProject/Pods-fishProject.debug.xcconfig"; sourceTree = "<group>"; };
@@ -55,6 +56,23 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		2677DCC62BD3B241007ECC0E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				26BB03B92BBECBD30051B6C4 /* ViewController.swift */,
+				26088CED2BD3B43D003FFB41 /* DetailViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2677DCC72BD3B24A007ECC0E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				26BB03BB2BBECBD30051B6C4 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		26BB03A92BBECBD30051B6C4 = {
 			isa = PBXGroup;
 			children = (
@@ -76,13 +94,12 @@
 		26BB03B42BBECBD30051B6C4 /* fishProject */ = {
 			isa = PBXGroup;
 			children = (
-				264F979E2BCBB3AA00B74486 /* Model */,
-				26BB03B52BBECBD30051B6C4 /* AppDelegate.swift */,
 				26BB03B72BBECBD30051B6C4 /* SceneDelegate.swift */,
-				26BB03B92BBECBD30051B6C4 /* ViewController.swift */,
-				26BB03BB2BBECBD30051B6C4 /* Main.storyboard */,
+				26BB03B52BBECBD30051B6C4 /* AppDelegate.swift */,
+				264F979E2BCBB3AA00B74486 /* Model */,
+				2677DCC72BD3B24A007ECC0E /* View */,
+				2677DCC62BD3B241007ECC0E /* Controller */,
 				26BB03BE2BBECBD50051B6C4 /* Assets.xcassets */,
-				26BB03C02BBECBD50051B6C4 /* LaunchScreen.storyboard */,
 				26BB03C32BBECBD50051B6C4 /* Info.plist */,
 			);
 			path = fishProject;
@@ -100,6 +117,7 @@
 		94739E71C98F4AEABFAB4966 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2677DCC82BD3B27C007ECC0E /* LaunchScreen.storyboard */,
 				B26284018E98B4BBA8475DAF /* libPods-fishProject.a */,
 			);
 			name = Frameworks;
@@ -165,7 +183,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26BB03C22BBECBD50051B6C4 /* LaunchScreen.storyboard in Resources */,
 				26BB03BF2BBECBD50051B6C4 /* Assets.xcassets in Resources */,
 				26BB03BD2BBECBD30051B6C4 /* Main.storyboard in Resources */,
 			);
@@ -223,6 +240,7 @@
 				264F97A02BCBB3BA00B74486 /* CoastDataManager.swift in Sources */,
 				26BB03BA2BBECBD30051B6C4 /* ViewController.swift in Sources */,
 				26BB03B62BBECBD30051B6C4 /* AppDelegate.swift in Sources */,
+				26088CEE2BD3B43D003FFB41 /* DetailViewController.swift in Sources */,
 				26BB03B82BBECBD30051B6C4 /* SceneDelegate.swift in Sources */,
 				2677DCC12BD01A0F007ECC0E /* WeatherDataManager.swift in Sources */,
 			);
@@ -237,14 +255,6 @@
 				26BB03BC2BBECBD30051B6C4 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		26BB03C02BBECBD50051B6C4 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				26BB03C12BBECBD50051B6C4 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -375,8 +385,9 @@
 				DEVELOPMENT_TEAM = W35T2QAC67;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = fishProject/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "기상 표시를 위해 위치 정보 제공을 동의합니까?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = Main.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -405,8 +416,9 @@
 				DEVELOPMENT_TEAM = W35T2QAC67;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = fishProject/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "기상 표시를 위해 위치 정보 제공을 동의합니까?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = Main.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

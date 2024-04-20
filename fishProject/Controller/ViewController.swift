@@ -9,8 +9,10 @@ import UIKit
 import NMapsMap
 import CoreLocation
 
+// 메인화면 ViewController
 class ViewController: UIViewController , CLLocationManagerDelegate {
     
+    @IBOutlet weak var subView: UIView!
     @IBOutlet weak var zoomControlView : NMFZoomControlView!
     
     let coastDataManager = CoastDataManager()
@@ -24,10 +26,10 @@ class ViewController: UIViewController , CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let mapView = NMFMapView(frame: view.frame)
-        view.addSubview(mapView)
+        let naverMapView = NMFNaverMapView(frame: view.frame)
+        subView.addSubview(naverMapView)
         
-        setMarkerData(mapView)
+        setMarkerData(naverMapView)
         setCoreLocation()
     }
     
@@ -79,9 +81,11 @@ class ViewController: UIViewController , CLLocationManagerDelegate {
         print(error)
     }
     
-    func setMarkerData(_ mapView : NMFMapView) {
+    func setMarkerData(_ naverMapView : NMFNaverMapView) {
         
         coastList = coastDataManager.getCoastData()
+        naverMapView.showLocationButton = true
+        naverMapView.mapView.zoomLevel = 5
         
         for coast in coastList {
             guard let lat = Double(coast.obsLat) else { return }
@@ -93,7 +97,7 @@ class ViewController: UIViewController , CLLocationManagerDelegate {
                 m.width = 30
                 m.height = 40
                 m.captionText = coast.obsPostName
-                m.mapView = mapView
+                m.mapView = naverMapView.mapView
                 m.userInfo = ["tag" : coast.obsPostName]
                 return m
             }()
@@ -120,6 +124,8 @@ class ViewController: UIViewController , CLLocationManagerDelegate {
                         break
                     }
                 }
+                
+                self.performSegue(withIdentifier: "toDetailVC", sender: self)
                 
                 return true
             }

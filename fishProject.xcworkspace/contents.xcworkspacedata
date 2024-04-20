@@ -4,6 +4,16 @@
    <FileRef
       location = "group:fishProject.xcodeproj">
    </FileRef>
+   <Group
+      location = "group:"
+      name = "LaunchScreen.storyboard">
+      <FileRef
+         location = "group:fishProject/Base.lproj/LaunchScreen.storyboard">
+      </FileRef>
+      <FileRef
+         location = "group:fishProject/Base.lproj/LaunchScreen.storyboard">
+      </FileRef>
+   </Group>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>

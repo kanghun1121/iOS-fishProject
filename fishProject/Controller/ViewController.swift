@@ -23,6 +23,7 @@ class ViewController: UIViewController , CLLocationManagerDelegate {
     
     var myLat : Int?
     var myLon : Int?
+    var tempCoastData : Coast?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,7 @@ class ViewController: UIViewController , CLLocationManagerDelegate {
         setCoreLocation()
     }
     
+    // 날씨 정보 데이터 얻기
     func setCoreLocation() {
         locationManger.delegate = self
         // 거리 정확도 설정
@@ -81,6 +83,16 @@ class ViewController: UIViewController , CLLocationManagerDelegate {
         print(error)
     }
     
+    // DetailVC에 CoastData 전달
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetailVC" {
+            let detailVC = segue.destination as! DetailViewController
+            
+            detailVC.tempCoastData = self.tempCoastData
+        }
+    }
+    
+    // 마커 표시, 마커 누르면 데이터 및 화면 이동
     func setMarkerData(_ naverMapView : NMFNaverMapView) {
         
         coastList = coastDataManager.getCoastData()
@@ -109,6 +121,8 @@ class ViewController: UIViewController , CLLocationManagerDelegate {
                 
                 for coast in self.coastList {
                     if (coast.obsPostName == tappedMarkerName) {
+                        self.tempCoastData = coast
+                        
                         // 9개의 정보 뿌림.
                         print("------------- \(coast.obsPostName) ------------")
                         print("tideLevel : ", coast.tideLevel)
@@ -126,6 +140,7 @@ class ViewController: UIViewController , CLLocationManagerDelegate {
                 }
                 
                 self.performSegue(withIdentifier: "toDetailVC", sender: self)
+                
                 
                 return true
             }

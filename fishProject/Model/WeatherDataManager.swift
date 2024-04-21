@@ -11,7 +11,7 @@ struct Response: Codable {
 
 // MARK: - Body
 struct Body: Codable {
-    let items: Items
+    let items: Items 
 }
 
 // MARK: - Items

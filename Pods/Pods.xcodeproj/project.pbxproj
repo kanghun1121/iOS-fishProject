@@ -69,7 +69,7 @@
 		53BB18D8DE6118DEC0AAC01027DBECA8 /* NMapsMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NMapsMap.release.xcconfig; sourceTree = "<group>"; };
 		76D98C3B823CA970CF024FD9E3C14356 /* Pods-fishProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-fishProject.release.xcconfig"; sourceTree = "<group>"; };
 		7F89040B8DC7FC773592AA5FE110E9DF /* NMapsGeometry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NMapsGeometry.release.xcconfig; sourceTree = "<group>"; };
-		9154E2C37E964BB9560002534802931F /* Pods-fishProject */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "Pods-fishProject"; path = "libPods-fishProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9154E2C37E964BB9560002534802931F /* libPods-fishProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-fishProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		94E99928E09A4289BFD65B6C8D3C5F49 /* Pods-fishProject-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-fishProject-acknowledgements.plist"; sourceTree = "<group>"; };
 		983FCEF2808419DF12F69DFEBD7685D4 /* NMapsMap-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "NMapsMap-xcframeworks.sh"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -198,7 +198,7 @@
 		F9A6BEAA22B726D7B140EA3AF129A1DB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9154E2C37E964BB9560002534802931F /* Pods-fishProject */,
+				9154E2C37E964BB9560002534802931F /* libPods-fishProject.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -232,7 +232,7 @@
 			);
 			name = "Pods-fishProject";
 			productName = "Pods-fishProject";
-			productReference = 9154E2C37E964BB9560002534802931F /* Pods-fishProject */;
+			productReference = 9154E2C37E964BB9560002534802931F /* libPods-fishProject.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */

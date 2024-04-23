@@ -457,8 +457,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="Efm-Z4-eKh"/>
-                        <segue destination="iar-yr-QQm" kind="relationship" relationship="viewControllers" id="9sQ-ho-Tgm"/>
                         <segue destination="TLQ-Th-JN7" kind="relationship" relationship="viewControllers" id="dKy-jb-svy"/>
+                        <segue destination="iar-yr-QQm" kind="relationship" relationship="viewControllers" id="9sQ-ho-Tgm"/>
                         <segue destination="Wg8-MF-QOh" kind="relationship" relationship="viewControllers" id="TfU-KP-dGs"/>
                         <segue destination="02n-5G-yL3" kind="relationship" relationship="viewControllers" id="mzK-4W-MbW"/>
                     </connections>
@@ -486,7 +486,7 @@
         <!--낚시터-->
         <scene sceneID="04S-vg-2zD">
             <objects>
-                <viewController id="TLQ-Th-JN7" sceneMemberID="viewController">
+                <viewController id="TLQ-Th-JN7" customClass="FishingViewController" customModule="fishProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="x44-4G-7XI">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

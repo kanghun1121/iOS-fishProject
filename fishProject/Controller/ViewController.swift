@@ -111,6 +111,7 @@ class ViewController: UIViewController , CLLocationManagerDelegate {
                 m.captionText = coast.obsPostName
                 m.mapView = naverMapView.mapView
                 m.userInfo = ["tag" : coast.obsPostName]
+                m.isHideCollidedSymbols = true
                 return m
             }()
 

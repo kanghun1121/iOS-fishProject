@@ -1,0 +1,6 @@
+module Pods_fishProject {
+  umbrella header "Pods-fishProject-umbrella.h"
+
+  export *
+  module * { export * }
+}
